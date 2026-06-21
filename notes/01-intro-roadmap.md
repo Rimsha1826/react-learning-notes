@@ -1,22 +1,22 @@
 # React Roadmap - Lecture 1
 
-## React kya hai?
-- JavaScript library hai UI banane ke liye
-- Complex front-end apps ke liye best hai jahan state manage karna ho
-- Facebook ne banaya tha "Ghost Message" problem solve karne ke liye
+## What is React?
+- A JavaScript library for building user interfaces
+- Best suited for complex front-end apps where state management is needed
+- Created by Facebook to solve the "Ghost Message" problem
 
-## Ghost Message Problem kya tha?
-- Facebook pe notification aata tha message ka
-- Lekin click karne pe message hota nahi tha
-- UI aur data sync nahi the — React ne yeh solve kiya
+## What was the Ghost Message Problem?
+- A notification would appear on Facebook for a new message
+- But clicking on it showed nothing - the UI and actual data were out of sync
+- React was built to solve this synchronization issue
 
-## React se pehle kya zaroori hai? (Prerequisites)
-- JavaScript achhi honi chahiye — especially:
+## Prerequisites before learning React
+- Strong JavaScript fundamentals are required, especially:
   - Execution context
-  - DOM manipulation  
-  - Async behavior (Promises, async/await)
+  - DOM manipulation
+  - Asynchronous behavior (Promises, async/await)
 
-## Is series mein kya seekhenge?
+## What will this series cover?
 - JSX
 - Components
 - Props
@@ -26,10 +26,10 @@
 - Redux / Context API
 - Firebase / Appwrite
 
-## React ke baad kya?
-- Next.js — SEO aur server side rendering ke liye
+## What comes after React?
+- Next.js - for SEO and server-side rendering
 - Gatsby, Remix
 
-## Mujhe kya samjha?
-React sirf ek tool hai — asli goal software developer banna hai.
-React wahan use karo jahan UI complex ho aur state manage karni ho.
+## My takeaway
+React is just a tool - the real goal is to become a software developer.
+Use React where the UI is complex and state management is needed.
