@@ -1,24 +1,24 @@
 # Lecture 5 - useState Hook
 
-## Problem kya tha?
-Normal JavaScript variable UI update nahi karta:
+## What was the problem?
+A normal JavaScript variable doesn't update the UI:
 ```js
 let counter = 0
-counter = counter + 1  // value change hoti hai
-// lekin screen pe kuch nahi badlta!
+counter = counter + 1  // value changes
+// but nothing changes on screen!
 ```
 
-## Solution — useState Hook
+## Solution - useState Hook
 ```jsx
 import { useState } from 'react'
 
 const [counter, setCounter] = useState(0)
 ```
-- `counter` — current value
-- `setCounter` — value change karne ka function
-- `0` — starting value (jo bhi starting value chahiye woh likhو)
+- `counter` - current value
+- `setCounter` - function to change the value
+- `0` - starting value (write whatever starting value you need)
 
-## useState mein kya kya likh sakte hain?
+## What can you write inside useState?
 ```js
 useState(0)       // Number
 useState("")      // String
@@ -27,10 +27,10 @@ useState([])      // Array
 useState({})      // Object
 ```
 
-## Kaise kaam karta hai?
-1. `setCounter()` call karo
-2. React automatically re-render karta hai
-3. Screen pe updated value dikh jaati hai
+## How does it work?
+1. Call `setCounter()`
+2. React automatically re-renders
+3. The updated value shows on screen
 
 ## Counter App Example
 ```jsx
@@ -57,11 +57,11 @@ function Counter() {
 }
 ```
 
-## JS Concepts jo is lecture mein use hue
+## JS Concepts used in this lecture
 
 ### 1. Array Destructuring
 ```js
-// useState array return karta hai
+// useState returns an array
 const [counter, setCounter] = useState(0)
 // counter = value
 // setCounter = function
@@ -74,7 +74,7 @@ const addValue = () => {
 }
 ```
 
-## Mujhe kya samjha
-useState ek hook (function) hai jo React ko batata hai
-ke value badli hai — screen update karo!
-Normal variable se yeh kaam nahi hota.
+## My takeaway
+useState is a hook (function) that tells React that a
+value has changed - update the screen! A normal variable
+can't do this.
