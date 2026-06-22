@@ -1,12 +1,12 @@
 # Lecture 11 - Currency Converter Project
 
-## Project kya hai?
-API se live currency rates fetch karke ek currency
-ko doosri mein convert karna, saath mein swap feature.
+## What is the project?
+Fetch live currency rates from an API and convert one
+currency to another, along with a swap feature.
 
-## Naya Concept — Custom Hook
-Apna khud ka reusable hook banana — naam `use` se start
-hota hai. Common logic ek jagah rakhte hain.
+## New Concept - Custom Hook
+Building your own reusable hook - the name starts with
+`use`. Keeps common logic in one place.
 
 ```js
 function useCurrencyInfo(currency) {
@@ -22,24 +22,24 @@ function useCurrencyInfo(currency) {
 }
 ```
 
-## API kya hai?
-Do systems ke beech data exchange karne ka tarika.
-- REST API — modern, JSON format, lightweight
-- SOAP API — purana, XML format, complex
+## What is an API?
+A way for two systems to exchange data.
+- REST API - modern, JSON format, lightweight
+- SOAP API - older, XML format, complex
 
-## fetch() aur .then()
+## fetch() and .then()
 ```js
 fetch('url')
-  .then((res) => res.json())      // response ko JSON banao
-  .then((res) => setData(res))    // data save karo
+  .then((res) => res.json())      // convert response to JSON
+  .then((res) => setData(res))    // save the data
 ```
-- fetch() request bhejta hai
-- .then() "jab response aaye tab yeh karo"
+- fetch() sends the request
+- .then() means "when the response arrives, do this"
 
-## useId Hook (naya)
-Unique ID generate karta hai — jab component multiple
-baar use ho (jaise InputBox From aur To dono ke liye),
-har ek ko alag unique id milti hai.
+## useId Hook (new)
+Generates a unique ID - when a component is used multiple
+times (like InputBox for both From and To), each instance
+gets its own unique id.
 
 ```jsx
 const amountInputId = useId()
@@ -48,17 +48,18 @@ const amountInputId = useId()
 ```
 
 ## Object.keys()
-Object ki saari keys (names) ko array mein nikalta hai.
+Extracts all keys (names) of an object into an array.
 ```js
 let obj = {usd: 1, pkr: 278}
 Object.keys(obj)  // ["usd", "pkr"]
 ```
 
-## Reusable Component — InputBox
-Ek hi component "From" aur "To" dono fields ke liye
-use kiya — props se data alag-alag pass kiya.
+## Reusable Component - InputBox
+Used the same component for both "From" and "To" fields -
+passed different data through props.
 
-## Mujhe kya samjha
-Custom hooks se code reusable banta hai. API se data
-fetch karna useEffect + fetch + .then() se hota hai.
-useId multiple same components mein unique IDs deta hai.
+## My takeaway
+Custom hooks make code reusable. Fetching data from an
+API happens through useEffect + fetch + .then(). useId
+gives unique IDs when the same component is used multiple
+times.
