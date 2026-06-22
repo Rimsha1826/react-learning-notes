@@ -1,14 +1,14 @@
 # Lecture 4 - React Behind the Scenes
 
-## React magical nahi hai!
-- Yeh ek structured JavaScript library hai
-- Hum khud bhi mini React bana sakte hain
+## React isn't magic!
+- It's just a structured JavaScript library
+- We can even build a mini React ourselves
 
-## React Element kya hota hai?
-Ek simple JavaScript object hota hai jisme 3 cheezein hoti hain:
-- `type` — kaunsa HTML element hai (div, h1 etc)
-- `props` — attributes (class, id etc)
-- `children` — andar ka content
+## What is a React Element?
+A simple JavaScript object with 3 things:
+- `type` - which HTML element (div, h1, etc)
+- `props` - attributes (class, id, etc)
+- `children` - the content inside
 
 ## customRender function (mini React)
 ```js
@@ -21,32 +21,32 @@ function customRender(reactElement, container) {
 }
 ```
 
-## JSX kya hai actually?
-- JSX sirf ek function call hai behind the scenes
-- Babel JSX ko `React.createElement()` mein convert karta hai
-- Yeh:
+## What is JSX actually?
+- JSX is just a function call behind the scenes
+- Babel converts JSX into `React.createElement()`
+- This:
 ```jsx
 <h1>Hello</h1>
 ```
-- Asliyat mein yeh hota hai:
+- Is actually this:
 ```js
 React.createElement('h1', null, 'Hello')
 ```
 
-## Curly braces {} ka kaam
-- JSX mein `{}` ke andar JavaScript expression likhte hain
-- Jaise variable ki value dikhana:
+## What do curly braces {} do?
+- Inside JSX, `{}` is used to write JavaScript expressions
+- Like displaying a variable's value:
 ```jsx
 const name = "Rimsha"
 return <h1>Hello {name}</h1>
 ```
 
-## React.createElement kyun better hai?
-- Manual implementation mein sab props manually handle karne padte hain
-- React.createElement automatically sab kuch handle karta hai
-- Complex optimizations already built in hain
+## Why is React.createElement better?
+- Manual implementation requires handling all props manually
+- React.createElement handles everything automatically
+- Complex optimizations are already built in
 
-## Mujhe kya samjha
-React koi magic nahi — yeh JavaScript objects hain jo 
-DOM mein inject hote hain. JSX sirf shortcut hai 
-React.createElement likhne ka.
+## My takeaway
+React is not magic - it's JavaScript objects that get
+injected into the DOM. JSX is just a shortcut for
+writing React.createElement.
