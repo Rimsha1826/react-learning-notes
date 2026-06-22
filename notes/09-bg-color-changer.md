@@ -1,7 +1,7 @@
 # Lecture 9 - Background Color Changer Project
 
-## Project kya hai?
-Buttons click karke poori screen ka background color change karna
+## What is the project?
+Clicking buttons changes the entire screen's background color
 
 ## Tech Stack
 - React + Vite
@@ -16,23 +16,23 @@ const [color, setColor] = useState('olive')
 </div>
 ```
 
-## Important Concept — Callback zaroori kyun?
+## Important Concept - Why is a callback needed?
 ```jsx
-// ❌ Galat — immediately execute hoga, click ka wait nahi karega
+// ❌ Wrong - executes immediately, doesn't wait for a click
 <button onClick={setColor('red')}>Red</button>
 
-// ✅ Sahi — sirf click pe chalega
+// ✅ Correct - only runs on click
 <button onClick={() => setColor('red')}>Red</button>
 ```
 
-## Tailwind classes use hui
-- `w-full h-screen` — full width/height
-- `fixed` — position fixed rakhna
-- `flex flex-wrap justify-center` — buttons center mein, wrap ho jayein
-- `duration-200` — smooth color transition
+## Tailwind classes used
+- `w-full h-screen` - full width/height
+- `fixed` - keep position fixed
+- `flex flex-wrap justify-center` - buttons centered, wrap if needed
+- `duration-200` - smooth color transition
 
-## Mujhe kya samjha
-State (color) change hote hi React automatically 
-re-render karta hai aur naya background dikhata hai.
-Callback function use karna zaroori hai onClick mein,
-warna function page load hote hi chal jaata hai.
+## My takeaway
+When state (color) changes, React automatically
+re-renders and shows the new background. A callback
+function must be used in onClick, otherwise the function
+runs immediately when the page loads.
