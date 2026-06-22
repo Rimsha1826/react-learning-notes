@@ -1,54 +1,43 @@
 # Lecture 6 - Virtual DOM, Reconciliation & React Fiber
 
-## Virtual DOM kya hai?
-- React memory mein ek copy banata hai actual DOM ki
-- Jab kuch change hota hai — pehle Virtual DOM update hota hai
-- Phir actual DOM se compare karta hai
-- Sirf jo part change hua — wahi update hota hai
-- Poora page re-paint nahi hota — fast hota hai!
+## What is the Virtual DOM?
+- React creates a copy of the actual DOM in memory
+- When something changes - the Virtual DOM updates first
+- Then it's compared with the actual DOM
+- Only the changed part gets updated
+- The whole page doesn't repaint - this makes it fast!
 
-## Reconciliation kya hai?
-- Yeh React ka diffing algorithm hai
-- Virtual DOM aur actual DOM ko compare karta hai
-- Dhundhta hai — kya kya change hua?
-- Sirf wahi update karta hai
+## What is Reconciliation?
+- This is React's diffing algorithm
+- It compares the Virtual DOM and the actual DOM
+- Finds out - what has changed?
+- Only updates that part
 
-## React Fiber kya hai?
-- React ka modern reconciliation engine hai
-- Animations aur layout ke liye better performance deta hai
-- 2 kaam karta hai:
-  - Incremental Rendering — kaam ko chhote chunks mein tode hai
-  - Task Prioritization — zaroori kaam pehle karta hai, baaki baad mein
+## What is React Fiber?
+- React's modern reconciliation engine
+- Gives better performance for animations and layout
+- Does 2 things:
+  - Incremental Rendering - breaks work into small chunks
+  - Task Prioritization - does urgent work first, rest later
 
-## Keys kyun zaroori hain?
-- List render karte waqt har item ko unique key dete hain
-- Fiber ko pata chalta hai — kaunsa item change hua
-- Performance better hoti hai
+## Why are keys important?
+- When rendering a list, we give each item a unique key
+- This helps Fiber know which item changed
+- Improves performance
 ```jsx
-// ❌ Galat — key nahi
+// ❌ Wrong - no key
 items.map(item => <li>{item}</li>)
 
-// ✅ Sahi — key hai
+// ✅ Correct - has key
 items.map(item => <li key={item.id}>{item}</li>)
 ```
 
-## Declarative thinking kya hai?
-- React mein hum sochte hain — "UI kaisi dikhni chahiye"
-- React khud handle karta hai — "kaise update karna hai"
-- Hum DOM manually manipulate nahi karte
+## What is declarative thinking?
+- In React, we think about "what the UI should look like"
+- React itself handles "how to update it"
+- We don't manually manipulate the DOM
 
-## Mujhe kya samjha
-Virtual DOM → Reconciliation → Fiber — yeh teeno milke
-React ko fast banate hain. Keys list mein performance
-optimize karti hain.     
-
-## React mein exactly yahi hota hai:
-User ne button click kiya
-        ↓
-Virtual DOM mein change hua (rough copy)
-        ↓
-Reconciliation ne compare kiya (kya badla?)
-        ↓
-Fiber ne smart tarike se sirf wahi update kiya
-        ↓
-Screen update ho gayi!
+## My takeaway
+Virtual DOM → Reconciliation → Fiber - these three work
+together to make React fast. Keys optimize performance
+when rendering lists.
