@@ -1,49 +1,49 @@
 # Lecture 8 - State Batching & Callback Updates
-callback ..function k under function 
-## Problem kya tha?
+
+## What was the problem?
 ```jsx
 const addValue = () => {
   setCounter(counter + 1)
   setCounter(counter + 1)
   setCounter(counter + 1)
-  // Expected: 3 baar add ho
-  // Actual: sirf 1 baar add hota hai!
+  // Expected: increments 3 times
+  // Actual: only increments once!
 }
 ```
-Kyunki React saari updates ek saath bhejta hai — batching!
+This happens because React batches all updates together.
 
-## Solution — Callback Function
+## Solution - Callback Function
 ```jsx
 const addValue = () => {
   setCounter(prev => prev + 1)
   setCounter(prev => prev + 1)
   setCounter(prev => prev + 1)
-  // Ab sahi — 3 baar add hoga!
+  // Now correct - increments 3 times!
 }
 ```
 
-## prev kya hai?
-- React khud pichli value deta hai
-- Hum uss pe kaam karte hain
-- Har update sahi sequence mein hota hai
+## What is `prev`?
+- React itself provides the previous (most recent) value
+- We work on top of that value
+- Each update happens in the correct sequence
 
-## Normal vs Callback farq
+## Normal vs Callback difference
 ```jsx
-// Normal — direct value
+// Normal - direct value
 setCounter(counter + 1)
 
-// Callback — previous value se
+// Callback - based on previous value
 setCounter((prev) => prev + 1)
 ```
 
-## JS Concept — Callback Function
-- Ek function jo doosre function ke andar pass hota hai
+## JS Concept - Callback Function
+- A function that is passed inside another function
 ```js
 setCounter((prev) => prev + 1)
-//          ^^^^^^^^^^^^^^^^^ — yeh callback hai
+//          ^^^^^^^^^^^^^^^^^ - this is the callback
 ```
 
-## Mujhe kya samjha
-Jab ek saath multiple state updates karni hon —
-hamesha callback form use karo taake
-sahi sequence mein update ho!
+## My takeaway
+When you need to perform multiple state updates at once,
+always use the callback form so updates happen in the
+correct sequence!
