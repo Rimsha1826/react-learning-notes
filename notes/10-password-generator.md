@@ -1,16 +1,16 @@
 # Lecture 10 - Password Generator Project
 
-## Project kya hai?
-User settings (length, numbers, special characters) ke
-hisaab se random password generate karna, aur "Copy"
-button se clipboard mein copy karna.
+## What is the project?
+Generate a random password based on user settings
+(length, numbers, special characters), and copy it to
+the clipboard with a "Copy" button.
 
-## 3 Naye Hooks Seekhe
+## 3 New Hooks Learned
 
 ### 1. useCallback
-Function ko memoize karta hai — sirf dependency change
-hone par naya function banta hai, warna purana reuse
-hota hai. Performance better hoti hai.
+Memoizes a function - it only creates a new function
+when a dependency changes, otherwise the old one is
+reused. Improves performance.
 ```jsx
 const generatePassword = useCallback(() => {
   // logic
@@ -18,8 +18,8 @@ const generatePassword = useCallback(() => {
 ```
 
 ### 2. useEffect
-Automatically code chalata hai jab page load ho ya
-dependency array mein diye values change hon.
+Automatically runs code when the page loads or when
+values in the dependency array change.
 ```jsx
 useEffect(() => {
   generatePassword()
@@ -27,15 +27,15 @@ useEffect(() => {
 ```
 
 ### 3. useRef
-Kisi HTML element ka direct reference/address banata hai
-— bina re-render kiye. Input box ko select karne ke liye
-use kiya.
+Creates a direct reference/address to an HTML element -
+without causing a re-render. Used here to select the
+input box.
 ```jsx
 const passwordRef = useRef(null)
 <input ref={passwordRef} />
 ```
 
-## Password Generate Logic
+## Password Generation Logic
 ```jsx
 let pass = ''
 let str = 'abc...XYZ'
@@ -49,27 +49,26 @@ for (let i = 1; i <= length; i++) {
 }
 setPassword(pass)
 ```
-- Saare allowed characters ek `str` mein mix kiye
-- Loop se random position choose ki, character nikala
-- Har baar `pass` mein add kiya
+- Mixed all allowed characters into one `str`
+- Used a loop to pick a random position and character
+- Added it to `pass` each time
 
 ## Copy to Clipboard Logic
 ```jsx
 passwordRef.current?.select()
 window.navigator.clipboard.writeText(password)
 ```
-- `select()` — input ka text highlight karta hai
-- `clipboard.writeText()` — actual clipboard mein copy karta hai
+- `select()` - highlights the input's text
+- `clipboard.writeText()` - actually copies to clipboard
 
-## JS Concepts use hue
-- `Math.random()` — random decimal number (0-1)
-- `Math.floor()` — decimal ko round down karta hai
-- `for loop` — repeat karne ke liye
-- `+=` — purani value mein naya add karna
-- `?.` — optional chaining (safety check)
+## JS Concepts used
+- `Math.random()` - random decimal number (0-1)
+- `Math.floor()` - rounds a decimal down
+- `for loop` - to repeat an action
+- `+=` - add to an existing value
+- `?.` - optional chaining (safety check)
 
-## Mujhe kya samjha
-useCallback function ko yaad rakhta hai, useEffect
-automatically kaam karta hai jab settings change hon,
-aur useRef directly element ka address deta hai bina
-re-render kiye.
+## My takeaway
+useCallback remembers a function, useEffect automatically
+runs code when settings change, and useRef gives a direct
+reference to an element without causing a re-render.
