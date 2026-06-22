@@ -1,34 +1,34 @@
 # Lecture 3 - Project Structure & React Flow
 
-## Browser kya samajhta hai?
-- Sirf HTML aur JavaScript
-- React ko explicitly HTML mein inject karna parta hai
+## What does a browser understand?
+- Only HTML and JavaScript
+- React must be explicitly injected into the DOM
 
-## Single Page Application (SPA) kya hai?
-- Sirf EK index.html hoti hai poori app mein
-- React DOM ko dynamically update karta hai
-- Multiple pages load nahi hote — sirf ek page pe sab kuch hota hai
+## What is a Single Page Application (SPA)?
+- There is only ONE index.html for the entire app
+- React dynamically updates the DOM
+- No multiple pages load - everything happens on a single page
 
-## React ka lifecycle (flow)
-1. `index.html` — ek div hoti hai `id="root"`
-2. `main.jsx` — createRoot() us div ko pakadta hai
-3. React apni components us div mein inject karta hai
+## React's lifecycle (flow)
+1. `index.html` - has a div with `id="root"`
+2. `main.jsx` - uses createRoot() to grab that div
+3. React injects its components into that div
 
-## Virtual DOM kya hai?
-- React apna ek copy banata hai DOM ka — memory mein
-- Jab kuch change hota hai — pehle Virtual DOM update hota hai
-- Phir actual DOM se compare karta hai
-- Sirf jo change hua woh update karta hai — fast hota hai
+## What is the Virtual DOM?
+- React creates its own copy of the DOM - in memory
+- When something changes - the Virtual DOM updates first
+- Then it compares with the actual DOM
+- Only updates what has changed - this makes it fast
 
 ## CRA vs Vite
-- CRA: react-scripts automatically inject karta hai — heavy
-- Vite: manually aur directly — fast aur lightweight
+- CRA: react-scripts injects automatically - heavy
+- Vite: manual and direct - fast and lightweight
 
-## Component banane ke rules
-- File naam Capital se shuru ho — `Chai.jsx`
-- Extension `.jsx` use karo `.js` nahi
-- Component naam Capital hona chahiye — `function Chai()`
-- Multiple elements return karne ho toh Fragment use karo:
+## Component creation rules
+- File name should start with a capital letter - `Chai.jsx`
+- Use `.jsx` extension, not `.js`
+- Component name should be capitalized - `function Chai()`
+- Use Fragment when returning multiple elements:
 ```jsx
 return (
   <>
@@ -38,6 +38,6 @@ return (
 )
 ```
 
-## Mujhe kya samjha
-React ek div ke andar inject hota hai — poori app usi ek 
-div mein chalti hai. Virtual DOM ki wajah se React fast hai.
+## My takeaway
+React gets injected into a single div - the entire app runs
+inside that one div. React is fast because of the Virtual DOM.
