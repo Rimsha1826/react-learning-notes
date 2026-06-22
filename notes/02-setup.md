@@ -1,22 +1,22 @@
 # Lecture 2 - React Setup & Project Creation
 
-## Tools chahiye
+## Tools needed
 - VS Code
 - Node.js
-- Documentation: react.dev (purani resources mat dekho)
+- Documentation: react.dev (don't use outdated resources)
 
-## Project banane ke 2 tarike
+## 2 ways to create a project
 
 ### 1. Create React App (CRA)
-- Purana tarika
-- Bhara hota hai — slow
+- Older method
+- Heavier - slower
 - Command:
 ```bash
 npx create-react-app my-app
 ```
 
 ### 2. Vite (Recommended)
-- Modern aur fast
+- Modern and fast
 - Command:
 ```bash
 npm create vite@latest my-app
@@ -25,15 +25,15 @@ npm install
 npm run dev
 ```
 
-## Project run karna
+## Running the project
 - CRA: `npm run start`
 - Vite: `npm run dev`
 
-## Project cleanup kya hota hai?
-- Naye project mein boilerplate files hoti hain
-- Unnecessary files delete karo — test files, logos, extra CSS
-- Sirf zaroori files rakho
+## What is project cleanup?
+- New projects come with boilerplate files
+- Delete unnecessary files - test files, logos, extra CSS
+- Keep only what's needed
 
-## Mujhe kya samjha
-Vite better hai CRA se — fast hai aur modern. 
-react.dev official documentation hai — wahan se seekho.
+## My takeaway
+Vite is better than CRA - faster and more modern.
+react.dev is the official documentation - learn from there.
