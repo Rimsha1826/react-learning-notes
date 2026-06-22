@@ -1,0 +1,106 @@
+# Lecture 15 - Redux Toolkit (RTK) Crash Course
+
+## Why Redux when we already have Context API?
+Context API works fine for small apps, but in large
+applications it can cause performance issues (too many
+re-renders). Redux Toolkit is a more powerful and
+organized way to manage state in bigger applications.
+
+## Core Concept - Redux is a predictable state container
+It's not just for React - Redux can be used with any
+JavaScript application to manage state in one central,
+predictable place (the Store).
+
+## 1. The Store - configureStore
+The "global locker" where the entire app's data lives.
+
+```js
+import { configureStore } from '@reduxjs/toolkit'
+import todoReducer from './todoSlice'
+
+export const store = configureStore({
+  reducer: {
+    todo: todoReducer
+  }
+})
+```
+
+## 2. Slice - createSlice
+Combines the reducer logic and actions for one feature
+(like a Todo list) into a single place.
+
+```js
+import { createSlice } from '@reduxjs/toolkit'
+
+const todoSlice = createSlice({
+  name: 'todo',
+  initialState: { todos: [] },
+  reducers: {
+    addTodo: (state, action) => {
+      state.todos.push(action.payload)
+    },
+    removeTodo: (state, action) => {
+      state.todos = state.todos.filter(todo => todo.id !== action.payload)
+    }
+  }
+})
+
+export const { addTodo, removeTodo } = todoSlice.actions
+export default todoSlice.reducer
+```
+
+- `initialState` - the starting value of this slice's data
+- `reducers` - functions that describe how the state can change
+- `action.payload` - the data sent along with an action
+  (e.g. the new todo object, or the id to remove)
+
+## 3. useDispatch - sending an action (changing data)
+```js
+import { useDispatch } from 'react-redux'
+import { addTodo } from './todoSlice'
+
+const dispatch = useDispatch()
+dispatch(addTodo({ id: 1, text: "Buy milk" }))
+```
+Real life analogy: giving an order to the locker -
+"add this item!"
+
+## 4. useSelector - reading data (to display it)
+```js
+import { useSelector } from 'react-redux'
+
+const todos = useSelector((state) => state.todo.todos)
+```
+Real life analogy: taking something out of the locker
+to look at it.
+
+## 5. Provider - connecting the whole app to the store
+```jsx
+import { Provider } from 'react-redux'
+import { store } from './store'
+
+<Provider store={store}>
+  <App />
+</Provider>
+```
+Wraps the entire app so any component can access the
+store using useDispatch/useSelector.
+
+## Redux DevTools
+A browser extension that lets you see and debug every
+state change happening in the store - very useful for
+tracking down bugs.
+
+## Redux Toolkit vs old/legacy Redux
+Old Redux required a lot of "boilerplate" code (separate
+action types, action creators, reducers written by hand).
+Redux Toolkit (RTK) simplifies all of this with
+`createSlice` and `configureStore`, making development
+much smoother.
+
+## My takeaway
+Redux Toolkit organizes global state into "slices" -
+each slice has its own initial state and reducer
+functions. useDispatch sends actions to change state,
+useSelector reads state to display it, and Provider
+makes the store available to the whole app.
