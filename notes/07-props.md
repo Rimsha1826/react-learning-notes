@@ -1,17 +1,17 @@
 # Lecture 7 - Props & Tailwind CSS
 
-## Props kya hai?
-- Parent component se child component ko data bhejne ka tarika
+## What is Props?
+- A way to pass data from a parent component to a child component
 - Props = Properties
 
-## Props use karna
+## Using Props
 ```jsx
-// Parent — data bhejta hai
+// Parent - sends data
 function App() {
   return <Card name="Rimsha" age="22" city="Jauharabad"/>
 }
 
-// Child — data receive karta hai
+// Child - receives data
 function Card(props) {
   return (
     <>
@@ -23,7 +23,7 @@ function Card(props) {
 }
 ```
 
-## Props Destructuring — clean tarika
+## Props Destructuring - cleaner way
 ```jsx
 function Card({ name, age, city }) {
   return (
@@ -36,16 +36,16 @@ function Card({ name, age, city }) {
 }
 ```
 
-## Default Props — agar data na mile
+## Default Props - in case data is missing
 ```jsx
 function Card({ name = "Guest", age = "N/A" }) {
   return <h2>{name} - {age}</h2>
 }
 ```
 
-## JS Concept — Object Destructuring
+## JS Concept - Object Destructuring
 ```js
-// Purana tarika
+// Old way
 const name = person.name
 const age = person.age
 
@@ -54,14 +54,14 @@ const { name, age } = person
 ```
 
 ## Tailwind CSS
-- Utility classes use karte hain styling ke liye
-- Alag CSS file likhne ki zaroorat nahi
+- Uses utility classes for styling
+- No need to write a separate CSS file
 ```jsx
 <div className="bg-green-400 rounded-xl p-4">
   Hello
 </div>
 ```
 
-## Mujhe kya samjha
-Props se components reusable bante hain — ek hi 
-component alag alag data ke saath use kar sakte hain!
+## My takeaway
+Props make components reusable - the same component can
+be used with different data in different places!
