@@ -1,19 +1,19 @@
 # Lecture 12 - React Router Basics
 
-## React Router kyun chahiye?
-React SPA hai (single HTML page) — Router fake multiple
-pages ka feel deta hai, bina actual page reload kiye.
+## Why do we need React Router?
+React is an SPA (single HTML page) - Router gives the
+feel of multiple pages, without an actual page reload.
 
 ## Link vs normal <a> tag
 ```jsx
-// Normal tag — page reload hota hai
+// Normal tag - causes a page reload
 <a href="/about">About</a>
 
-// Link — page reload nahi hota
+// Link - no page reload
 <Link to="/about">About</Link>
 ```
 
-## NavLink — active page highlight karta hai
+## NavLink - highlights the active page
 ```jsx
 <NavLink
   to="/about"
@@ -22,11 +22,11 @@ pages ka feel deta hai, bina actual page reload kiye.
   About
 </NavLink>
 ```
-isActive automatically true hota hai agar user usi page pe hai.
+isActive automatically becomes true if the user is on that page.
 
-## Outlet — placeholder for changing content
-Layout (Header+Footer) fix rehta hai, Outlet ki jagah
-har page ka content change hota hai.
+## Outlet - placeholder for changing content
+The Layout (Header+Footer) stays fixed, only the content
+in place of Outlet changes per page.
 ```jsx
 function Layout() {
   return (
@@ -39,7 +39,7 @@ function Layout() {
 }
 ```
 
-## createBrowserRouter — Routes ka naqsha
+## createBrowserRouter - the routes map
 ```jsx
 const router = createBrowserRouter([
   {
@@ -53,24 +53,24 @@ const router = createBrowserRouter([
   },
 ])
 ```
-- path — URL kya hona chahiye
-- element — konsa component dikhana hai
-- children — Outlet ki jagah kya aayega depend karta hai URL pe
+- path - what the URL should be
+- element - which component to show
+- children - what appears in place of Outlet depending on the URL
 
 ## RouterProvider
 ```jsx
 <RouterProvider router={router} />
 ```
-Poori app ko batata hai ke yeh router (naqsha) follow karo.
+Tells the entire app to follow this router (map).
 
-## useParams — URL se dynamic value lena
-Jab URL ka koi part "variable" ho, jaise User ID.
+## useParams - getting a dynamic value from the URL
+When part of the URL is "variable", like a User ID.
 
 ```jsx
-// Route mein dynamic path define karna
+// Defining a dynamic path in the route
 { path: 'user/:userid', element: <User /> }
 
-// Component mein woh value pakadna
+// Capturing that value inside the component
 import { useParams } from 'react-router-dom'
 
 function User() {
@@ -78,15 +78,15 @@ function User() {
   return <h1>User ID: {userid}</h1>
 }
 ```
-`:userid` ek placeholder hai — URL mein jo bhi value ho
-(jaise /user/Rimsha ya /user/42), usi se match ho jata hai.
+`:userid` is a placeholder - it matches whatever value is
+in the URL (like /user/Rimsha or /user/42).
 
-## loader & useLoaderData — Pehle se data fetch karna
-Page render hone se pehle hi API data fetch kar leta hai,
-performance better hoti hai, loading delay nahi dikhta.
+## loader & useLoaderData - fetching data in advance
+Fetches API data before the page renders, improving
+performance and avoiding loading delays.
 
 ```jsx
-// Component file mein — loader function banate hain
+// In the component file - creating a loader function
 export const githubInfoLoader = async () => {
   const response = await fetch('https://api.github.com/users/hiteshchoudhary')
   return response.json()
@@ -107,7 +107,7 @@ export default Github
 ```
 
 ```jsx
-// Route mein loader ko connect karna
+// Connecting the loader in the route
 import Github, { githubInfoLoader } from './components/Github/Github'
 
 {
@@ -117,24 +117,36 @@ import Github, { githubInfoLoader } from './components/Github/Github'
 }
 ```
 
-### async/await kya hai?
-- `async` — function ko batata hai "yeh time lega" (network call hai)
-- `await` — "yahan ruko jab tak response na aaye, phir aage badho"
+### What is async/await?
+- `async` - tells the function "this will take time" (network call)
+- `await` - "wait here until the response arrives, then continue"
 
 ```js
 const githubInfoLoader = async () => {
-  const response = await fetch('url')   // yahan rukega
+  const response = await fetch('url')   // waits here
   return response.json()
 }
 ```
 
+### Normal useEffect vs Loader - the difference
+**useEffect approach:**
+```
+Page loads -> Component shows (no data yet) ->
+useEffect runs -> API call -> Data arrives -> Then it shows
+```
+The user sees a brief "loading" state.
 
-### Normal useEffect vs Loader
-- useEffect: Page dikhta hai → phir data aata hai (loading dikhta hai)
-- loader: Data pehle aata hai → phir page dikhta hai (seedha complete page)
+**Loader approach:**
+```
+User clicks the link -> Loader fetches data first ->
+Once data is ready -> Page shows (with the data)
+```
+A complete page with data shows right away.
 
-## Mujhe kya samjha
-loader performance better karta hai kyunki data
-component render hone se pehle hi ready hota hai.
-useParams URL ke dynamic parts ko code mein use
-karne deta hai.
+## My takeaway
+The Layout stays fixed (Header/Footer), only the Outlet's
+content changes based on the URL. The Router is a map
+that says what to show for which URL. useParams lets you
+use dynamic parts of a URL in code. loader improves
+performance because data is ready before the component
+even renders.
