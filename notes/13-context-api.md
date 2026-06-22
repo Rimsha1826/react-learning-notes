@@ -1,34 +1,34 @@
 # Lecture 13 - Context API
 
-## Problem — Prop Drilling
-Jab data ek component se bohot neeche wale component
-tak pahunchana ho, har beech wale component se "guzarna"
-padta hai — chahe unhe data ki zaroorat na ho.
+## Problem - Prop Drilling
+When data needs to reach a component far down the tree,
+it has to "pass through" every component in between -
+even if they don't need that data.
 
 ```jsx
-App → <Page name="Rimsha" />
-Page → <Header name={name} />
-Header → <UserProfile name={name} />
+App -> <Page name="Rimsha" />
+Page -> <Header name={name} />
+Header -> <UserProfile name={name} />
 ```
-Page aur Header ko name ki zaroorat nahi thi, sirf carry
-kar rahe the.
+Page and Header didn't need the name, they were just
+carrying it along.
 
-## Solution — Context API
-Data ko "globally available" banata hai — direct us
-component tak pahunchta hai jisko zaroorat hai, beech
-walon ko involve kiye bina.
+## Solution - Context API
+Makes data "globally available" - it reaches directly to
+the component that needs it, without going through every
+component in between.
 
 ## 3 Steps
 
-### 1. Context banao
+### 1. Create a Context
 ```js
 import { createContext } from "react"
 const UserContext = createContext()
 export default UserContext
 ```
-Yeh sirf ek khaali "box/address" banata hai.
+This just creates an empty "box/address".
 
-### 2. Provider banao — data ko available karo
+### 2. Create a Provider - make the data available
 ```jsx
 import { useState } from "react"
 import UserContext from "./UserContext"
@@ -45,11 +45,11 @@ const UserContextProvider = ({ children }) => {
 
 export default UserContextProvider
 ```
-- state banaya jo data store karega
-- Provider se woh data "available" kiya
-- children = jo bhi components iske andar wrap honge
+- created state that will store the data
+- made that data "available" through the Provider
+- children = whatever components get wrapped inside this
 
-### 3. useContext se data lo (jahan zaroorat ho)
+### 3. Use useContext to get the data (wherever needed)
 ```jsx
 import { useContext } from "react"
 import UserContext from "../context/UserContext"
@@ -57,37 +57,37 @@ import UserContext from "../context/UserContext"
 const { user, setUser } = useContext(UserContext)
 ```
 
-## children prop kya hai?
-Special prop — jo bhi JSX kisi component ke ANDAR likha
-ho, woh automatically "children" mein aa jata hai.
+## What is the children prop?
+A special prop - whatever JSX is written INSIDE a
+component automatically becomes its "children".
 
 ```jsx
 <UserContextProvider>
-  <App />   {/* yeh hai children */}
+  <App />   {/* this is children */}
 </UserContextProvider>
 ```
 
-## Poora flow ek example se
+## The full flow, with an example
 ```jsx
-// App.jsx — Provider se sab wrap kiya
+// App.jsx - wrapped everything with the Provider
 <UserContextProvider>
   <Login />
   <Profile />
 </UserContextProvider>
 
-// Login.jsx — data SET karta hai
+// Login.jsx - SETS the data
 const { setUser } = useContext(UserContext)
 setUser({ username, password })
 
-// Profile.jsx — data USE karta hai
+// Profile.jsx - USES the data
 const { user } = useContext(UserContext)
 <h2>Welcome, {user.username}</h2>
 ```
-Login aur Profile ek doosre se directly connected nahi
-hain — dono sirf UserContext se baat karte hain!
+Login and Profile aren't directly connected to each other
+- they both just talk to UserContext.
 
-## Mujhe kya samjha
-Context ek shared storage jaisa hai jahan koi bhi
-component (jo Provider ke andar hai) data daal sakta hai
-ya nikal sakta hai — bina props pass kiye. children
-prop wrapper components banane ke liye use hota hai.
+## My takeaway
+Context works like shared storage where any component
+(inside the Provider) can put data in or take data out -
+without passing props. The children prop is used to build
+wrapper components.
