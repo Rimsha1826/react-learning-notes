@@ -74,6 +74,9 @@ const addValue = () => {
 }
 ```
 
+## full project counter-app (source code)
+https://github.com/Rimsha1826/Counter-app
+
 ## My takeaway
 useState is a hook (function) that tells React that a
 value has changed - update the screen! A normal variable
