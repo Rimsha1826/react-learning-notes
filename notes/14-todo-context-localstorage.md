@@ -135,6 +135,9 @@ useEffect(() => {
 - Runs every time `todo` state changes
 - `JSON.stringify()` converts the array/object into a
   string (localStorage can only store strings)
+  
+## full Todo-App project (source code)
+https://github.com/Rimsha1826/devweekend-context-todo-app
 
 ## My takeaway
 Context API lets multiple components (TodoForm, TodoItem)
